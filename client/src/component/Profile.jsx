@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { setTimeout } from "timers/promises";
+
 
 
 const Profile = () => {
@@ -19,7 +19,8 @@ const Profile = () => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      await setTimeout(5000);
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      await sleep(5000);
       const loginResponse = await axios.get('https://dvisual-deployment-server.vercel.app/login');
       setLogin(loginResponse.data.login);
 
@@ -47,7 +48,8 @@ useEffect(() => {
   const handleAddSite = async () => {
     try {
       // Fetch the logged-in user's data
-      await setTimeout(5000);
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      await sleep(5000);
       const loginResponse = await axios.get('https://dvisual-deployment-server.vercel.app/login');
       if (!loginResponse.data.user) {
         history.push('/login');
