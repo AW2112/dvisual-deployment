@@ -28,11 +28,7 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    if (show) {
-      history.push('/profile');
-    }
-  }, [show, history]);
+ 
 
   axios.defaults.withCredentials = true;
 
