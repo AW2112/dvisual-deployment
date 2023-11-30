@@ -44,6 +44,7 @@ const Login = () => {
         if (!initialRequestsMade) {
           // Only make the initial requests if they haven't been made yet
           const response = await axios.get('https://dvisual-deployment-server.vercel.app/login');
+          console.log(response);
           if (response.data.user) {
             history.push('/profile');
           }
