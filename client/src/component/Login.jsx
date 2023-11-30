@@ -35,7 +35,25 @@ const Login = () => {
   }, [show, history]);
 
   axios.defaults.withCredentials = true;
-
+ useEffect(() => {
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+      await sleep(5000);
+    const checkLogin = async () => {
+      try {
+        if (!initialRequestsMade) {
+          // Only make the initial requests if they haven't been made yet
+          const response = await axios.get('https://dvisual-deployment-server.vercel.app/login');
+          if (response.data.user) {
+            history.push('/profile');
+          }
+          setInitialRequestsMade(true); // Set the flag to true after the initial requests
+        }
+      } catch (error) {
+        console.error('Error during initial requests:', error);
+      }
+    };
+    checkLogin();
+  }, [history, initialRequestsMade]);
  
   const userInput = (event) => {
     const { name, value } = event.target;
